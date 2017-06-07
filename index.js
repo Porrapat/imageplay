@@ -1,4 +1,5 @@
 var Jimp = require("jimp");
+var path = require('path');
 
 function pad(n, width, z) {
   z = z || '0';
@@ -18,7 +19,8 @@ function loop(filename_to_read,i) {
 			image.resize(876,94);
 			bg_image.blit( image, 196, 12, 0, 0, 876, 94  );
 			
-			Jimp.loadFont(Jimp.FONT_SANS_32_BLACK).then(function (font) {
+			// Jimp.loadFont(Jimp.FONT_SANS_32_BLACK).then(function (font) {
+			Jimp.loadFont('font-to-use/font.fnt').then(function (font) {
 				bg_image.print(font, 20, 40, "STAR"+pad(i,3));
 				bg_image.write("dist/BJPG/"+filename_to_read); // save 
 			});
