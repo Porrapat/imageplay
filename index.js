@@ -11,11 +11,17 @@ var i = 0;
 // loop for reading the same image until process will be killed/exited
 function loop(filename_to_read,i) {
     console.log('%s', filename_to_read);
-    Jimp.read("src/BJPG/"+filename_to_read).then(function(lenna) {
+    Jimp.read("src/BJPG/"+filename_to_read).then(function(image) {
 		
 		console.log(i + "." + filename_to_read + " Writed");
-		lenna.write("dist/BJPG/"+filename_to_read); // save 
 		
+		var bg_image = new Jimp(1087, 118, 0xFFFFFFFF, function (err, bg_image) {
+			// this image is 256 x 256, every pixel is set to 0x00000000
+			image.resize(876,94);
+			bg_image.blit( image, 196, 12, 0, 0, 876, 94  );
+			// image.blit( src, x, y[, srcx, srcy, srcw, srch] );
+			bg_image.write("dist/BJPG/"+filename_to_read); // save 
+		});
         // loop(filename);
     }).catch(function (err) {
         console.log(err);
@@ -24,7 +30,7 @@ function loop(filename_to_read,i) {
 
 // read images
 var i=1;
-for (i=1;i <= 300;i++) {
+for (i=1;i <= 5;i++) {
 	var filename_to_read = 'STAR'+pad(i,3)+' copy.jpg';
 	loop(filename_to_read,i);
 }
