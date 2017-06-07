@@ -21,7 +21,7 @@ function loop(filename_to_read,i) {
 			
 			// Jimp.loadFont(Jimp.FONT_SANS_32_BLACK).then(function (font) {
 			Jimp.loadFont('font-to-use/font.fnt').then(function (font) {
-				bg_image.print(font, 20, 40, "STAR"+pad(i,3));
+				bg_image.print(font, 20, 28, "STAR"+pad(i,3));
 				bg_image.write("dist/BJPG/"+filename_to_read); // save 
 			});
 		});
@@ -33,7 +33,10 @@ function loop(filename_to_read,i) {
 
 // read images
 var i=1;
-for (i=1;i <= 5;i++) {
+var start = 254;	//249 - 253 no files.
+var end = 300;
+console.log("Loop from "+start+" to "+end);
+for (i=start;i <= end;i++) {
 	var filename_to_read = 'STAR'+pad(i,3)+' copy.jpg';
 	loop(filename_to_read,i);
 }
