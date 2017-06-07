@@ -6,5 +6,5 @@ Jimp.read("src_test/lenna.jpg", function (err, lenna) {
     lenna.resize(256, 256)            // resize 
          .quality(60)                 // set JPEG quality 
          .greyscale()                 // set greyscale 
-         .write("dist_test/lena-small-bw.jpg"); // save 
+         .write("dist/BJPG/lena-small-bw.jpg"); // save 
 });
